@@ -36,6 +36,8 @@
 #include <stdint.h>
 #include <sys/select.h>
 
+#define ENTER()  do{printf("[%s:%d] ENTER\n",__func__,__LINE__);}while(0)
+#define LEAVE()  do{printf("[%s:%d] LEAVE\n",__func__,__LINE__);}while(0)
 
 #ifdef __cplusplus
 extern "C" {

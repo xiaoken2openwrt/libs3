@@ -116,7 +116,7 @@ static S3Status dataCallback(int bufferSize, const char *buffer,
                              void *callbackData)
 {
     XmlCallbackData *cbData = (XmlCallbackData *) callbackData;
-
+	printf("{%s:%d}%s\n",__func__,__LINE__,buffer);
     return simplexml_add(&(cbData->simpleXml), buffer, bufferSize);
 }
 
@@ -143,6 +143,7 @@ void S3_list_service(S3Protocol protocol, const char *accessKeyId,
                      int timeoutMs,
                      const S3ListServiceHandler *handler, void *callbackData)
 {
+	ENTER();
     // Create and set up the callback data
     XmlCallbackData *data =
         (XmlCallbackData *) malloc(sizeof(XmlCallbackData));
@@ -197,6 +198,7 @@ void S3_list_service(S3Protocol protocol, const char *accessKeyId,
 
     // Perform the request
     request_perform(&params, requestContext);
+	LEAVE();
 }
 
 

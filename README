@@ -2,3 +2,21 @@ This directory contains the libs3 library.
 
 The libs3 library is free software.  See the file LICENSE for copying
 permission.
+
+usage1:查询名称为aws-uw2-lku-pass-dev01的bucket的信息
+```
+source ./export.sh
+./build/bin/s3-static list aws-uw2-lku-paas-dev01
+```
+
+usage2:向名称为aws-uw2-lku-paas-dev01的bucket推送一个名称为ChangLog的本地文件,在远端取名为/log/device/LKMSD411/lkcq00a2241200000110/1223
+```
+source ./export.sh
+./build/bin/s3 put aws-uw2-lku-paas-dev01/log/device/LKMSD411/lkcq00a2241200000110/1223 filename=ChangeLog
+```
+
+usage3:向名称为aws-uw2-lku-pass-dev01的bucket下载一个名称为/log/device/LKMSD411/lkcq00a2241100000225/lcl的文件到本地，并保存名为local.lcl
+```
+source ./export.sh
+./build/bin/s3-static get aws-uw2-lku-paas-dev01/log/device/LKMSD411/lkcq00a2241100000225/lcl  filename=local.lcl
+```

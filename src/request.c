@@ -1561,8 +1561,49 @@ static S3Status setup_request(const RequestParams *params,
     return status;
 }
 
+int debug_callback(CURL *handle, curl_infotype type,
+                   char *data, size_t size, void *userptr)
+{
+    const char *prefix = "";
+    FILE *logfile = (FILE *)userptr;
+    
+    switch (type) {
+    case CURLINFO_TEXT:
+        prefix = "[INFO] ";
+        break;
+    case CURLINFO_HEADER_OUT:
+        prefix = "[SEND HEADER] ";
+        break;
+    case CURLINFO_HEADER_IN:
+        prefix = "[RECV HEADER] ";
+        break;
+    case CURLINFO_DATA_OUT:
+        prefix = "[SEND DATA] ";
+        break;
+    case CURLINFO_DATA_IN:
+        prefix = "[RECV DATA] ";
+        break;
+    case CURLINFO_SSL_DATA_OUT:
+    case CURLINFO_SSL_DATA_IN:
+        // 通常不需要记录 SSL 原始数据
+        return 0;
+    default:
+        return 0;
+    }
+	printf("%s",prefix);
+	printf("%s",data);
+	printf("\n");
+    // 写入日志文件
+  //  fwrite(prefix, strlen(prefix), 1, logfile);
+ //   fwrite(data, size, 1, logfile);
+//    fflush(logfile);
+    
+    return 0;
+}
+
 void request_perform(const RequestParams *params, S3RequestContext *context)
 {
+	ENTER();
     Request *request;
     S3Status status;
     int verifyPeerRequest = verifyPeer;
@@ -1595,7 +1636,8 @@ void request_perform(const RequestParams *params, S3RequestContext *context)
             return_status(S3StatusFailedToInitializeRequest);
         }
     }
-
+	curl_easy_setopt(request->curl, CURLOPT_VERBOSE, 1L);
+	curl_easy_setopt(request->curl, CURLOPT_DEBUGFUNCTION, debug_callback);
     // If a RequestContext was provided, add the request to the curl multi
     if (context) {
         CURLMcode code = curl_multi_add_handle(context->curlm, request->curl);
@@ -1629,6 +1671,7 @@ void request_perform(const RequestParams *params, S3RequestContext *context)
         // also releases the request
         request_finish(request);
     }
+	LEAVE();
 }
 
 

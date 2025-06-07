@@ -72,12 +72,14 @@ static int retriesG = 5;
 static int timeoutMsG = 0;
 static int verifyPeerG = 0;
 static const char *awsRegionG = NULL;
+static const char *hostNameG = NULL;
 
 
 // Environment variables, saved as globals ----------------------------------
 
 static const char *accessKeyIdG = 0;
 static const char *secretAccessKeyG = 0;
+static const char *secretSessionTokenG = 0;
 
 
 // Request results, saved as globals -----------------------------------------
@@ -172,6 +174,7 @@ static char putenvBufG[256];
 
 static void S3_init()
 {
+	ENTER();
     S3Status status;
     const char *hostname = getenv("S3_HOSTNAME");
 
@@ -181,6 +184,7 @@ static void S3_init()
                 S3_get_status_name(status));
         exit(-1);
     }
+	LEAVE();
 }
 
 
@@ -924,6 +928,7 @@ static S3Status listServiceCallback(const char *ownerId,
 
 static void list_service(int allDetails)
 {
+	ENTER();
     list_service_data data;
 
     data.headerPrinted = 0;
@@ -938,10 +943,11 @@ static void list_service(int allDetails)
     };
 
     do {
-        S3_list_service(protocolG, accessKeyIdG, secretAccessKeyG, 0, 0,
+        S3_list_service(protocolG, 
+						accessKeyIdG, secretAccessKeyG, secretSessionTokenG, 0,
                         awsRegionG, 0, timeoutMsG, &listServiceHandler, &data);
     } while (S3_status_is_retryable(statusG) && should_retry());
-
+	printf("{%s:%d}statusG=%d\n",__func__,__LINE__,statusG);
     if (statusG == S3StatusOK) {
         if (!data.headerPrinted) {
             printListServiceHeader(allDetails);
@@ -952,6 +958,7 @@ static void list_service(int allDetails)
     }
 
     S3_deinitialize();
+	LEAVE();
 }
 
 
@@ -1272,13 +1279,13 @@ static void list_bucket(const char *bucketName, const char *prefix,
 
     S3BucketContext bucketContext =
     {
-        0,
+        hostNameG,
         bucketName,
         protocolG,
         uriStyleG,
         accessKeyIdG,
         secretAccessKeyG,
-        0,
+        secretSessionTokenG,
         awsRegionG
     };
 
@@ -1321,9 +1328,9 @@ static void list_bucket(const char *bucketName, const char *prefix,
     S3_deinitialize();
 }
 
-
 static void list(int argc, char **argv, int optindex)
 {
+	ENTER();
     if (optindex == argc) {
         list_service(0);
         return;
@@ -1373,6 +1380,7 @@ static void list(int argc, char **argv, int optindex)
     else {
         list_service(allDetails);
     }
+	LEAVE();
 }
 
 
@@ -1706,7 +1714,7 @@ static void list_multipart_uploads(int argc, char **argv, int optindex)
             uriStyleG,
             accessKeyIdG,
             secretAccessKeyG,
-            0,
+            secretSessionTokenG,
             awsRegionG
         };
 
@@ -2382,13 +2390,13 @@ static void put_object(int argc, char **argv, int optindex,
 
     S3BucketContext bucketContext =
     {
-        0,
+        hostNameG,
         bucketName,
         protocolG,
         uriStyleG,
         accessKeyIdG,
         secretAccessKeyG,
-        0,
+        secretSessionTokenG,
         awsRegionG
     };
 
@@ -3968,6 +3976,30 @@ int main(int argc, char **argv)
     if (!secretAccessKeyG) {
         fprintf(stderr,
                 "Missing environment variable: S3_SECRET_ACCESS_KEY\n");
+        return -1;
+    }
+
+	secretSessionTokenG = getenv("S3_SECRET_SESSION_TOKEN");
+    if (!secretSessionTokenG) {
+        fprintf(stderr,
+                "Missing environment variable: S3_SECRET_SESSION_TOKEN\n");
+        return -1;
+    }
+	if(strlen(secretSessionTokenG)==0){
+		secretSessionTokenG=NULL;
+	}
+	hostNameG = getenv("S3_HOSTNAME");
+    if (!hostNameG) {
+        fprintf(stderr,
+                "Missing environment variable: S3_HOSTNAME\n");
+        return -1;
+    }
+
+
+	awsRegionG = getenv("S3_AWS_REGION");
+    if (!awsRegionG) {
+        fprintf(stderr,
+                "Missing environment variable: S3_AWS_REGION\n");
         return -1;
     }
 
