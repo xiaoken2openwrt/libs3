@@ -1272,6 +1272,9 @@ static S3Status setup_curl(Request *request,
             curl_slist_append(request->headers, values->amzHeaders[i]);
     }
 
+	// Disable Expect: 100-continue
+    request->headers = curl_slist_append(request->headers,"Expect:");
+
     // Set the HTTP headers
     curl_easy_setopt_safe(CURLOPT_HTTPHEADER, request->headers);
 
