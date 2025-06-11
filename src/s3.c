@@ -2995,13 +2995,13 @@ static void get_object(int argc, char **argv, int optindex)
 
     S3BucketContext bucketContext =
     {
-        0,
+        hostNameG,
         bucketName,
         protocolG,
         uriStyleG,
         accessKeyIdG,
         secretAccessKeyG,
-        0,
+        secretSessionTokenG,
         awsRegionG
     };
 
