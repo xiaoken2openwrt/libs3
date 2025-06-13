@@ -1,0 +1,135 @@
+[S3_init:177] ENTER
+[S3_init:187] LEAVE
+[request_perform:1606] ENTER
+[INFO]   Trying 52.92.227.240:443...
+
+[INFO] Connected to s3.us-west-2.amazonaws.com (52.92.227.240) port 443 (#0)
+
+[INFO] ALPN, offering h2
+
+[INFO] ALPN, offering http/1.1
+
+[INFO] TLSv1.0 (OUT), TLS header, Certificate Status (22):
+
+[INFO] TLSv1.3 (OUT), TLS handshake, Client hello (1):
+
+[INFO] TLSv1.2 (IN), TLS header, Certificate Status (22):
+
+[INFO] TLSv1.3 (IN), TLS handshake, Server hello (2):
+
+[INFO] TLSv1.2 (IN), TLS header, Finished (20):
+
+[INFO] TLSv1.2 (IN), TLS header, Supplemental data (23):
+
+[INFO] TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+
+[INFO] TLSv1.2 (IN), TLS header, Supplemental data (23):
+
+[INFO] TLSv1.3 (IN), TLS handshake, Certificate (11):
+
+[INFO] TLSv1.2 (IN), TLS header, Supplemental data (23):
+
+[INFO] TLSv1.3 (IN), TLS handshake, CERT verify (15):
+
+[INFO] TLSv1.2 (IN), TLS header, Supplemental data (23):
+
+[INFO] TLSv1.3 (IN), TLS handshake, Finished (20):
+
+[INFO] TLSv1.2 (OUT), TLS header, Finished (20):
+
+[INFO] TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+
+[INFO] TLSv1.2 (OUT), TLS header, Supplemental data (23):
+
+[INFO] TLSv1.3 (OUT), TLS handshake, Finished (20):
+
+[INFO] SSL connection using TLSv1.3 / TLS_AES_128_GCM_SHA256
+
+[INFO] ALPN, server accepted to use http/1.1
+
+[INFO] Server certificate:
+
+[INFO]  subject: CN=*.s3-us-west-2.amazonaws.com
+
+[INFO]  start date: May 16 00:00:00 2025 GMT
+
+[INFO]  expire date: Apr 17 23:59:59 2026 GMT
+
+[INFO]  subjectAltName: host "s3.us-west-2.amazonaws.com" matched cert's "s3.us-west-2.amazonaws.com"
+
+[INFO]  issuer: C=US; O=Amazon; CN=Amazon RSA 2048 M01
+
+[INFO]  SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
+
+[INFO] TLSv1.2 (OUT), TLS header, Supplemental data (23):
+
+[SEND HEADER] PUT /aws-uw2-lku-paas-dev01/log/device/LKMSD411/lkcq00a2241100000225/1427 HTTP/1.1
+Host: s3.us-west-2.amazonaws.com
+User-Agent: Mozilla/4.0 (Compatible; s3; libs3 4.1; Linux x86_64)
+Accept: */*
+Content-Length: 653
+Authorization: AWS4-HMAC-SHA256 Credential=ASIAVAHXRAFXRTVFVVXO/20250607/us-west-2/s3/aws4_request,SignedHeaders=host;x-amz-content-sha256;x-amz-date;x-amz-security-token,Signature=452fbcf5c62de443d639be59db738ac4f32627a1c0085930f4d526ef7acdf32f
+x-amz-date: 20250607T071347Z
+x-amz-security-token: IQoJb3JpZ2luX2VjEJf//////////wEaCXVzLXdlc3QtMiJHMEUCIAl6dwA3w9h9NOABGdwUKgQNM1g44B1QVeFU0+R4WWEIAiEAzJrQFJvWPLTi5tRenUY9uLT/m5Rlzy7+8Uwm1UjF368qnQMIcBACGgwzNDQxMTY0OTQ3MDMiDJC4ssByG6WhYB8IKyr6As6XLwReQtlLsoJ9uW7x6Nifym2eF0ygHf4i0eKDw1hAsn9iiu7n4taXVtewKp2MlUe9MkruTx4LG3HIT4N81FyjJGKyf1DIPxgGNFG5gmS6BRi/yCKfe3P1E45aZsSRRbaYd/nm0E7BjhivXkKs8dVQjhBspRb8ETpUU/X9y3qOSvikJLuq9KObcz9Hw1+RV+vE2G3TiUsFyBeHoJ4k+od8Xljtg2e/E2FV0eYjgWJdCDcslD+6Nq+0NJSCIs3dJcEOyozyacS4nnoeW2xogaF9Ij7NzaHzHs/a7AjvJV24KYjkuoGs2RuGMqQ5owpL0ys2B+ppetZHY+CAsUKv6yfi9sd9UM9u35dFuJ/V4nTwwUPRomDjNhAk5Gz9sSeUMK/snaJk96pMCaswAUP0ffUgYYR3UYHl1CgP6F+tzGz4G8ThguO/36DfNbLQ0lEslyn2Y83SF3N3OGTmnx8iW75uD7yuaYEb0oXWCv90kmU7k0/nCHaRJoJzLDDMzI/CBjqdAdWWZTj/7OrxG3/Pv0au7CYgPa5on7NKyTD5oTAOAVvefjFDVTadS1Oqn3D0rSHLpZsgeNmkxv+Y/ipihmLnXFO8abO/iUaanQ/TK08NcsmaEjzkfhIgiJZCJsYTnXrFTE/MNsNuLGBf+Q3K1fpC45jUGxBnD6vZcZW0AXLx2WYVli/tftcWhcWK8tC/FUvk726zY2w86mPJs0BKwYE=
+x-amz-content-sha256: UNSIGNED-PAYLOAD
+Expect: 100-continue
+
+
+[INFO] TLSv1.2 (IN), TLS header, Supplemental data (23):
+
+[INFO] Mark bundle as not supporting multiuse
+
+[RECV HEADER] HTTP/1.1 100 Continue
+
+[INFO] TLSv1.2 (OUT), TLS header, Supplemental data (23):
+
+[SEND DATA] Thu Sep 18 10:03:02 NZST 2008   bryan@ischo.com
+	* This file is no longer maintained, sorry
+
+Sat Aug  9 13:44:21 NZST 2008   bryan@ischo.com
+	* Fixed bug wherein keys with non-URI-safe characters did not work
+	  correctly because they were not being URI-encoded in the request UR
+	* Split RPM and DEB packages into normal and devel packages
+
+Fri Aug  8 22:40:19 NZST 2008	bryan@ischo.com
+	* Branched 0.4
+	* Created RPM and Debian packaging
+
+Tue Aug  5 08:52:33 NZST 2008	bryan@ischo.com
+	* Bumped version number to 0.3
+	* Moved Makefile to GNUmakefile, added shared library build
+	* Added a bunch of GNU standard files (README, INSTALL, ChangeLog, etc)
+m1UjF368qnQMIcBACGgwzNDQxMTY0OTQ3MDMiDJC4ssByG6WhYB8IKyr6As6XLwReQtlLsoJ9uW7x6Nifym2eF0ygHf4i0eKDw1hAsn9iiu7n4taXVtewKp2MlUe9MkruTx4LG3HIT4N81FyjJGKyf1DIPxgGNFG5gmS6BRi/yCKfe3P1E45aZsSRRbaYd/nm0E7BjhivXkKs8dVQjhBspRb8ETpUU/X9y3qOSvikJLuq9KObcz9Hw1+RV+vE2G3TiUsFyBeHoJ4k+od8Xljtg2e/E2FV0eYjgWJdCDcslD+6Nq+0NJSCIs3dJcEOyozyacS4nnoeW2xogaF9Ij7NzaHzHs/a7AjvJV24KYjkuoGs2RuGMqQ5owpL0ys2B+ppetZHY+CAsUKv6yfi9sd9UM9u35dFuJ/V4nTwwUPRomDjNhAk5Gz9sSeUMK/snaJk96pMCaswAUP0ffUgYYR3UYHl1CgP6F+tzGz4G8ThguO/36DfNbLQ0lEslyn2Y83SF3N3OGTmnx8iW75uD7yuaYEb0oXWCv90kmU7k0/nCHaRJoJzLDDMzI/CBjqdAdWWZTj/7OrxG3/Pv0au7CYgPa5on7NKyTD5oTAOAVvefjFDVTadS1Oqn3D0rSHLpZsgeNmkxv+Y/ipihmLnXFO8abO/iUaanQ/TK08NcsmaEjzkfhIgiJZCJsYTnXrFTE/MNsNuLGBf+Q3K1fpC45jUGxBnD6vZcZW0AXLx2WYVli/tftcWhcWK8tC/FUvk726zY2w86mPJs0BKwYE=
+x-amz-content-sha256: UNSIGNED-PAYLOAD
+Expect: 100-continue
+
+
+[INFO] TLSv1.2 (IN), TLS header, Supplemental data (23):
+
+[INFO] Mark bundle as not supporting multiuse
+
+[RECV HEADER] HTTP/1.1 200 OK
+
+[RECV HEADER] x-amz-id-2: CqbXTvagpAwG0C2VjWgUclkD+6D3BlcTBHjIUC5qSbxWfmPPZXVasRRqLptJ74KTWG0IVEHJL2k=
+
+[RECV HEADER] x-amz-request-id: Y6PQ4A669F8868ZW
+
+[RECV HEADER] Date: Sat, 07 Jun 2025 07:13:48 GMT
+
+[RECV HEADER] x-amz-server-side-encryption: AES256
+
+[RECV HEADER] ETag: "ab91c1b5a33542bbf0bad0c36a4a0de6"
+
+[RECV HEADER] x-amz-checksum-crc64nvme: 8OmCTIYbC+A=
+
+[RECV HEADER] x-amz-checksum-type: FULL_OBJECT
+
+[RECV HEADER] Content-Length: 0
+
+[RECV HEADER] Server: AmazonS3
+
+[RECV HEADER] 
+
+[INFO] Connection #0 to host s3.us-west-2.amazonaws.com left intact
+
+[request_perform:1674] LEAVE
